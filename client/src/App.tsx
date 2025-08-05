@@ -14,6 +14,7 @@ import LoginPage from './pages/LoginPage';
 import OrdersPage from './pages/OrdersPage';
 import ReportsPage from './pages/ReportsPage';
 import CCEmailsPage from './pages/CCEmailsPage';
+import SignRequestGridPage from './pages/SignRequestGridPage';
 import LoadingSpinner from './components/Common/LoadingSpinner';
 
 // Create a client for React Query
@@ -106,6 +107,14 @@ const AppRoutes: React.FC = () => {
           element={
             <ProtectedRoute>
               <CCEmailsPage />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/sign-requests"
+          element={
+            <ProtectedRoute>
+              <SignRequestGridPage />
             </ProtectedRoute>
           }
         />

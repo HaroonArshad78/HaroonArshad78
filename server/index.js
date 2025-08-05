@@ -13,6 +13,7 @@ const reorderRoutes = require('./routes/reorders');
 const reportRoutes = require('./routes/reports');
 const ccEmailRoutes = require('./routes/ccemails');
 const lookupRoutes = require('./routes/lookups');
+const signRequestRoutes = require('./routes/signRequests');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -47,6 +48,7 @@ app.use('/api/reorders', reorderRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/ccemails', ccEmailRoutes);
 app.use('/api/lookups', lookupRoutes);
+app.use('/api/sign-requests', signRequestRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
