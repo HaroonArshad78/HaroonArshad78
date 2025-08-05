@@ -154,6 +154,97 @@ async function seedDatabase() {
 
     console.log(`Created ${vendors.length} vendors`);
 
+    // Create sample orders
+    const now = new Date();
+    const twoYearsAgo = new Date(now);
+    twoYearsAgo.setFullYear(now.getFullYear() - 2);
+    const threeYearsAgo = new Date(now);
+    threeYearsAgo.setFullYear(now.getFullYear() - 3);
+
+    const orders = await require('../models/Order').bulkCreate([
+      {
+        orderId: 'SO-1001',
+        officeId: offices[0].id,
+        agentId: users[2].id, // John Smith
+        installationType: 'INSTALLATION',
+        propertyType: 'Residential',
+        streetAddress: '101 Main St',
+        city: 'Downtown',
+        state: 'NY',
+        zipCode: '10001',
+        orderDate: now,
+        completionDate: null,
+        installationDate: now,
+        status: 'PENDING',
+        vendorId: vendors[0].id
+      },
+      {
+        orderId: 'SO-1002',
+        officeId: offices[0].id,
+        agentId: users[3].id, // Jane Doe
+        installationType: 'REMOVAL',
+        propertyType: 'Residential',
+        streetAddress: '102 Main St',
+        city: 'Downtown',
+        state: 'NY',
+        zipCode: '10001',
+        orderDate: now,
+        completionDate: now,
+        installationDate: now,
+        status: 'COMPLETED',
+        vendorId: vendors[0].id
+      },
+      {
+        orderId: 'SO-1003',
+        officeId: offices[1].id,
+        agentId: users[5].id, // Sarah Wilson
+        installationType: 'INSTALLATION',
+        propertyType: 'Commercial',
+        streetAddress: '201 Oak Ave',
+        city: 'Suburbia',
+        state: 'NY',
+        zipCode: '10002',
+        orderDate: twoYearsAgo,
+        completionDate: null,
+        installationDate: twoYearsAgo,
+        status: 'IN_PROGRESS',
+        vendorId: vendors[1].id
+      },
+      {
+        orderId: 'SO-1004',
+        officeId: offices[1].id,
+        agentId: users[6].id, // David Brown
+        installationType: 'REMOVAL',
+        propertyType: 'Commercial',
+        streetAddress: '202 Oak Ave',
+        city: 'Suburbia',
+        state: 'NY',
+        zipCode: '10002',
+        orderDate: threeYearsAgo,
+        completionDate: threeYearsAgo,
+        installationDate: threeYearsAgo,
+        status: 'COMPLETED',
+        vendorId: vendors[1].id
+      },
+      {
+        orderId: 'SO-1005',
+        officeId: offices[2].id,
+        agentId: users[10].id, // Robert Miller
+        installationType: 'INSTALLATION',
+        propertyType: 'Residential',
+        streetAddress: '301 Elite Blvd',
+        city: 'Uptown',
+        state: 'NY',
+        zipCode: '10003',
+        orderDate: now,
+        completionDate: null,
+        installationDate: null, // No installation yet
+        status: 'PENDING',
+        vendorId: vendors[2].id
+      }
+    ]);
+    console.log(`Created ${orders.length} orders`);
+
     console.log('\n=== SEEDING COMPLETED ===');
     console.log('\nTest Accounts:');
     console.log('IT Admin: admin@signorders.com / admin123');
